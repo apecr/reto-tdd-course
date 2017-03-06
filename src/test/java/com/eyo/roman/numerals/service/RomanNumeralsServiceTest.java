@@ -39,4 +39,12 @@ public class RomanNumeralsServiceTest {
         //Then
         assertEquals( "II", romanNumeral );
     }
+    
+    @Test
+    public void whenNumber3ReturnIII(){
+        //When
+        String romanNumeral = this.romanNumeralsService.convertDecimalNumberToRomanNumeral( 3 );
+        //Then
+        assertEquals( "III", romanNumeral );
+    }
 }
