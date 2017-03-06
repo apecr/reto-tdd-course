@@ -1,2 +1,2 @@
 # reto-tdd-course
-Repositorio con el erto del curso de TDD: https://geekshubsacademy.com/lms/tdd
+Repositorio con el reto del curso de TDD: https://geekshubsacademy.com/lms/tdd
