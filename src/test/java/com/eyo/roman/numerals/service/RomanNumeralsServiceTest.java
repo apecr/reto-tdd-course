@@ -49,6 +49,14 @@ public class RomanNumeralsServiceTest {
     }
     
     @Test
+    public void whenNumber3ReturnIII(){
+        //When
+        String romanNumeral = this.romanNumeralsService.convertDecimalNumberToRomanNumeral( 3 );
+        //Then
+        assertEquals( "III", romanNumeral );
+    }
+    
+    @Test
     public void whenNumber4ReturnIV(){
         //When
         String romanNumeral = this.romanNumeralsService.convertDecimalNumberToRomanNumeral( 4 );
@@ -97,10 +105,11 @@ public class RomanNumeralsServiceTest {
     }
     
     @Test
-    public void whenNumber3ReturnIII(){
+    public void whenNumber10ReturnX(){
         //When
-        String romanNumeral = this.romanNumeralsService.convertDecimalNumberToRomanNumeral( 3 );
+        String romanNumeral = this.romanNumeralsService.convertDecimalNumberToRomanNumeral( 10 );
         //Then
-        assertEquals( "III", romanNumeral );
+        assertEquals( "X", romanNumeral );
     }
+    
 }
