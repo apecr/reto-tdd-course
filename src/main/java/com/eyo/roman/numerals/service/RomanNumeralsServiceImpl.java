@@ -11,6 +11,7 @@ import com.eyo.roman.numerals.vo.RomanNumbers;
 @Component
 public class RomanNumeralsServiceImpl implements RomanNumeralsService {
     
+    
     private static final Map<Integer, RangeOfRomanNumeralsVO> MAP_RANGES = new HashMap<>();
     
     static {
@@ -24,7 +25,8 @@ public class RomanNumeralsServiceImpl implements RomanNumeralsService {
         StringBuilder romanNumeral = new StringBuilder();
         int lenghtString = String.valueOf( naturalNumber ).length();
         for (int i = lenghtString; i > 0; i--) {
-            romanNumeral.append( getRomanNumeralFromSimpleNumberMinusThanTen( MAP_RANGES.get( i ), (int) ( naturalNumber % Math.pow( 10, i ) / Math.pow( 10, (double)i -1  ) ) ) );
+            romanNumeral.append( getRomanNumeralFromSimpleNumberMinusThanTen( MAP_RANGES.get( i ),
+                    (int) ( naturalNumber % Math.pow( 10, i ) / Math.pow( 10, (double) i - 1 ) ) ) );
         }
         return romanNumeral.toString();
     }
@@ -37,10 +39,13 @@ public class RomanNumeralsServiceImpl implements RomanNumeralsService {
      * (ten --> M [1000], five --> D [500], one --> C [100], numberMinusThanTen --> 4) <br>
      * La salida tiene que ser CD (500 -100)
      * 
-     * @param rangeOfRomanNumerals {@link RangeOfRomanNumeralsVO} con los siguientes parametros:<br>
-     *      ten --> {@link String} con la potencia de diez por encima del numero (si es el 9, X [10], p.e.)<br>
-     *      five --> {@link String} con el valor intermedio de la potencia de diez por encima (si es el 90, L [50], p.e.)<br>
-     *      one --> {@link String} con el valor de la unidad que estamos midiendo potencia de 10 (si el 900, C [100], p.e)
+     * @param rangeOfRomanNumerals
+     *        {@link RangeOfRomanNumeralsVO} con los siguientes parametros:<br>
+     *        ten --> {@link String} con la potencia de diez por encima del numero (si es el 9, X [10], p.e.)<br>
+     *        five --> {@link String} con el valor intermedio de la potencia de diez por encima (si es el 90, L [50],
+     *        p.e.)<br>
+     *        one --> {@link String} con el valor de la unidad que estamos midiendo potencia de 10 (si el 900, C [100],
+     *        p.e)
      * @param numberMinusThanTen
      *        El valor multiplicador de la potencia de 10 (si es 9 --> 9, si es 90 --> 0, si es 900 --> 9)
      * @return {@link String} Con el valor en numeros romanos del numberMinusThanTen
@@ -78,7 +83,8 @@ public class RomanNumeralsServiceImpl implements RomanNumeralsService {
      * @param output
      * @return
      */
-    private String betweenSixAndEigthInclusives(RomanNumbers five, RomanNumbers one, int numberMinusThanTen, String output) {
+    private String betweenSixAndEigthInclusives(RomanNumbers five, RomanNumbers one, int numberMinusThanTen,
+            String output) {
         String romanNumber = output;
         if (numberMinusThanTen > 5) {
             romanNumber = five.name() + repeatString( one.name(), numberMinusThanTen - 5 );
@@ -141,10 +147,11 @@ public class RomanNumeralsServiceImpl implements RomanNumeralsService {
     
     @Override
     public int convertRomanNumeralToDecimalNumber(String romanNumeral) {
-        if (romanNumeral == "I"){
-            return 1;
+        int numberConverted = 0;
+        if (romanNumeral == "I") {
+            numberConverted = 1;
         }
-        return 0;
+        return numberConverted;
     }
     
 }
