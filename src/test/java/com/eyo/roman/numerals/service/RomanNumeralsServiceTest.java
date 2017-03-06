@@ -227,4 +227,92 @@ public class RomanNumeralsServiceTest {
         //Then
         assertEquals( "C", romanNumeral );
     }
+    
+    @Test
+    public void whenNumber101ReturnCI(){
+        //When
+        String romanNumeral = this.romanNumeralsService.convertDecimalNumberToRomanNumeral( 101 );
+        //Then
+        assertEquals( "CI", romanNumeral );
+    }
+    
+    @Test
+    public void whenNumber108ReturnCVIII(){
+        //When
+        String romanNumeral = this.romanNumeralsService.convertDecimalNumberToRomanNumeral( 108 );
+        //Then
+        assertEquals( "CVIII", romanNumeral );
+    }
+    
+    @Test
+    public void whenNumber110ReturnCX(){
+        //When
+        String romanNumeral = this.romanNumeralsService.convertDecimalNumberToRomanNumeral( 110 );
+        //Then
+        assertEquals( "CX", romanNumeral );
+    }
+    
+    @Test
+    public void whenNumber123ReturnCXXIII(){
+        //When
+        String romanNumeral = this.romanNumeralsService.convertDecimalNumberToRomanNumeral( 123 );
+        //Then
+        assertEquals( "CXXIII", romanNumeral );
+    }
+    
+    @Test
+    public void whenNumber156ReturnCLVI(){
+        //When
+        String romanNumeral = this.romanNumeralsService.convertDecimalNumberToRomanNumeral( 156 );
+        //Then
+        assertEquals( "CLVI", romanNumeral );
+    }
+    
+    @Test
+    public void whenNumber184ReturnCLXXXIV(){
+        //When
+        String romanNumeral = this.romanNumeralsService.convertDecimalNumberToRomanNumeral( 184 );
+        //Then
+        assertEquals( "CLXXXIV", romanNumeral );
+    }
+    
+    @Test
+    public void whenNumber200ReturnCC(){
+        //When
+        String romanNumeral = this.romanNumeralsService.convertDecimalNumberToRomanNumeral( 200 );
+        //Then
+        assertEquals( "CC", romanNumeral );
+    }
+    
+    @Test
+    public void whenNumber201ReturnCCI(){
+        //When
+        String romanNumeral = this.romanNumeralsService.convertDecimalNumberToRomanNumeral( 201 );
+        //Then
+        assertEquals( "CCI", romanNumeral );
+    }
+    
+    @Test
+    public void whenNumber207ReturnCVII(){
+        //When
+        String romanNumeral = this.romanNumeralsService.convertDecimalNumberToRomanNumeral( 207 );
+        //Then
+        assertEquals( "CCVII", romanNumeral );
+    }
+    
+    @Test
+    public void whenNumber236ReturnCCXXXVI(){
+        //When
+        String romanNumeral = this.romanNumeralsService.convertDecimalNumberToRomanNumeral( 236 );
+        //Then
+        assertEquals( "CCXXXVI", romanNumeral );
+    }
+    
+    @Test
+    public void whenNumber756ReturnDCCLVI(){
+        //When
+        String romanNumeral = this.romanNumeralsService.convertDecimalNumberToRomanNumeral( 756 );
+        //Then
+        assertEquals( "DCCLVI", romanNumeral );
+    }
 }
