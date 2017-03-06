@@ -25,6 +25,14 @@ public class RomanNumeralsServiceTest {
     }
     
     /**
+     * 
+     * 
+     * convertDecimalNumberToRomanNumeral
+     * 
+     * 
+     */
+    
+    /**
      * Del 0 al 9
      */
     
@@ -314,5 +322,29 @@ public class RomanNumeralsServiceTest {
         String romanNumeral = this.romanNumeralsService.convertDecimalNumberToRomanNumeral( 756 );
         //Then
         assertEquals( "DCCLVI", romanNumeral );
+    }
+    
+    /**
+     * 
+     * 
+     * convertDecimalNumberToRomanNumeral
+     * 
+     * 
+     */
+    
+    @Test
+    public void whenRomanEmptyNumber0(){
+        //When
+        int number = this.romanNumeralsService.convertRomanNumeralToDecimalNumber( "" );
+        //Then
+        assertEquals( 0, number );
+    }
+    
+    @Test
+    public void whenRomanINumber1(){
+        //When
+        int number = this.romanNumeralsService.convertRomanNumeralToDecimalNumber( "I" );
+        //Then
+        assertEquals( 1, number );
     }
 }
