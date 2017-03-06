@@ -32,6 +32,15 @@ public class RomanNumeralsServiceImpl implements RomanNumeralsService {
         return romanNumeral.toString();
     }
     
+    @Override
+    public int convertRomanNumeralToDecimalNumber(String romanNumeral) {
+        int numberConverted = 0;
+        if (romanNumeral != null && romanNumeral.length() > 0) {
+            numberConverted = recorreNumerosRomanosYSumaCadaUno( romanNumeral, 0 );
+        }
+        return numberConverted;
+    }
+    
     /**
      * Obtiene el numero romano de un numero menor que diez. Sirve para cualquier numero siempre y cuando este sea una
      * potencia de diez. Para saber el valor real en numeros romanos se le pasa lo que vale el multiplo de diez por
@@ -144,15 +153,6 @@ public class RomanNumeralsServiceImpl implements RomanNumeralsService {
      */
     private String repeatString(String stringToRepeat, int numberOfTimes) {
         return new String( new char[numberOfTimes] ).replace( "\0", stringToRepeat );
-    }
-    
-    @Override
-    public int convertRomanNumeralToDecimalNumber(String romanNumeral) {
-        int numberConverted = 0;
-        if (romanNumeral != null && romanNumeral.length() > 0) {
-            numberConverted = recorreNumerosRomanosYSumaCadaUno( romanNumeral, 0 );
-        }
-        return numberConverted;
     }
     
     /**
