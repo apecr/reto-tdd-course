@@ -148,8 +148,10 @@ public class RomanNumeralsServiceImpl implements RomanNumeralsService {
     @Override
     public int convertRomanNumeralToDecimalNumber(String romanNumeral) {
         int numberConverted = 0;
-        if (romanNumeral != null && romanNumeral.length() == 1) {
-            numberConverted = RomanNumbers.valueOf( romanNumeral ).getValue();
+        if (romanNumeral != null && romanNumeral.length() > 0) {
+            for (int i = 0; i < romanNumeral.length(); i++){
+                numberConverted = numberConverted + RomanNumbers.valueOf( romanNumeral.substring( i, i+1 ) ).getValue();
+            }
         }
         return numberConverted;
     }
