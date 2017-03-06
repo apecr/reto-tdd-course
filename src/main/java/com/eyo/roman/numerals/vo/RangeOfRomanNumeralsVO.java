@@ -18,9 +18,9 @@ public class RangeOfRomanNumeralsVO implements Serializable{
     
     public RangeOfRomanNumeralsVO(String ten, String five, String one) {
         super();
-        this.ten = ten;
-        this.five = five;
-        this.one = one;
+        this.setTen( ten );
+        this.setFive( five );
+        this.setOne( one );
     }
 
 

@@ -10,7 +10,7 @@ import com.eyo.roman.numerals.vo.RangeOfRomanNumeralsVO;
 @Component
 public class RomanNumeralsServiceImpl implements RomanNumeralsService {
     
-    private static final Map<Integer, RangeOfRomanNumeralsVO> MAP_RANGES = new HashMap<Integer, RangeOfRomanNumeralsVO>();
+    private static final Map<Integer, RangeOfRomanNumeralsVO> MAP_RANGES = new HashMap<>();
     
     static {
         MAP_RANGES.put( 1, new RangeOfRomanNumeralsVO( "X", "V", "I" ) );
@@ -23,7 +23,7 @@ public class RomanNumeralsServiceImpl implements RomanNumeralsService {
         StringBuilder romanNumeral = new StringBuilder();
         int lenghtString = String.valueOf( naturalNumber ).length();
         for (int i = lenghtString; i > 0; i--) {
-            romanNumeral.append( getRomanNumeralFromSimpleNumberMinusThanTen( MAP_RANGES.get( i ), (int) ( naturalNumber % Math.pow( 10, i ) / Math.pow( 10, i -1  ) ) ) );
+            romanNumeral.append( getRomanNumeralFromSimpleNumberMinusThanTen( MAP_RANGES.get( i ), (int) ( naturalNumber % Math.pow( 10, i ) / Math.pow( 10, (double)i -1  ) ) ) );
         }
         return romanNumeral.toString();
     }
