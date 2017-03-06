@@ -15,7 +15,7 @@ public class RomanNumeralsServiceImpl implements RomanNumeralsService {
         if (naturalNumber > 9) {
             romanNumeral.append( getRomanNumeralFromSimpleNumberMinusThanTen( "C", "L", "X", (naturalNumber % 100) / 10 ) );
         }
-        romanNumeral.append(getRomanNumeralFromSimpleNumberMinusThanTen( "X", "V", "I", naturalNumber % 10 ));
+        romanNumeral.append(getRomanNumeralFromSimpleNumberMinusThanTen( "X", "V", "I", (naturalNumber % 100) % 10 ));
         return romanNumeral.toString();
     }
     
