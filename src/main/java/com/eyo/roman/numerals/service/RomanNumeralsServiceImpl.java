@@ -9,8 +9,11 @@ public class RomanNumeralsServiceImpl implements RomanNumeralsService {
     @Override
     public String convertDecimalNumberToRomanNumeral(int naturalNumber) {
         StringBuilder romanNumeral = new StringBuilder();
+        if (naturalNumber > 99){
+            romanNumeral.append( getRomanNumeralFromSimpleNumberMinusThanTen( "M", "D", "C", naturalNumber / 100 ) );
+        }
         if (naturalNumber > 9) {
-            romanNumeral.append( getRomanNumeralFromSimpleNumberMinusThanTen( "C", "L", "X", naturalNumber / 10 ) );
+            romanNumeral.append( getRomanNumeralFromSimpleNumberMinusThanTen( "C", "L", "X", (naturalNumber % 100) / 10 ) );
         }
         romanNumeral.append(getRomanNumeralFromSimpleNumberMinusThanTen( "X", "V", "I", naturalNumber % 10 ));
         return romanNumeral.toString();
