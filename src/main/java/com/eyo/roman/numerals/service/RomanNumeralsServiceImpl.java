@@ -8,10 +8,11 @@ public class RomanNumeralsServiceImpl implements RomanNumeralsService {
     
     @Override
     public String convertDecimalNumberToRomanNumeral(int naturalNumber) {
+        String romanNumeral = "I";
         if (naturalNumber == 2){
-            return "II";
+            romanNumeral = "II";
         }
-        return "I";
+        return romanNumeral;
     }
     
     @Override
