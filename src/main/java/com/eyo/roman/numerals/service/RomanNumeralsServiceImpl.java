@@ -1,5 +1,6 @@
 package com.eyo.roman.numerals.service;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -149,24 +150,113 @@ public class RomanNumeralsServiceImpl implements RomanNumeralsService {
     public int convertRomanNumeralToDecimalNumber(String romanNumeral) {
         int numberConverted = 0;
         if (romanNumeral != null && romanNumeral.length() > 0) {
-            for (int i = 0; i < romanNumeral.length(); i++) {
-                if (i < romanNumeral.length() - 1) {
-                    int letter = RomanNumbers.valueOf( romanNumeral.substring( i, i + 1 ) ).getValue();
-                    int nextLetter = RomanNumbers.valueOf( romanNumeral.substring( i + 1, i + 2 ) ).getValue();
-                    if (letter < nextLetter) {
-                        numberConverted = numberConverted
-                                + nextLetter - letter;
-                        i++;
-                    } else {
-                        numberConverted = numberConverted
-                                + RomanNumbers.valueOf( romanNumeral.substring( i, i + 1 ) ).getValue();
-                    }
-                } else {
-                    numberConverted = numberConverted
-                            + RomanNumbers.valueOf( romanNumeral.substring( i, i + 1 ) ).getValue();
-                }
-            }
+            numberConverted = recorreNumerosRomanosYSumaCadaUno( romanNumeral, 0 );
         }
+        return numberConverted;
+    }
+
+    /**
+     * @param romanNumeral
+     * @param numberConverted
+     * @return
+     */
+    private int recorreNumerosRomanosYSumaCadaUno(String romanNumeral, int numberConverted) {
+        NumberConverted number = new NumberConverted();
+        number.numberConverted = numberConverted;
+        number.skipNextValue = false;
+        for (int i = 0; i < romanNumeral.length(); i++) {
+            allNumbersButLast( romanNumeral, number, i ); 
+            lastNumber( romanNumeral, number, i );
+            i = addCountIfFirstNumberLowerThanSecond( number, i );
+        }
+        return number.numberConverted;
+    }
+
+    /**
+     * @param number
+     * @param i
+     * @return
+     */
+    private int addCountIfFirstNumberLowerThanSecond(NumberConverted number, int i) {
+        if (number.skipNextValue){
+            i++;
+            number.skipNextValue = false;
+        }
+        return i;
+    }
+
+    /**
+     * @param romanNumeral
+     * @param number
+     * @param i
+     */
+    private void allNumbersButLast(String romanNumeral, NumberConverted number, int i) {
+        if (i < romanNumeral.length() - 1) {
+            int letter = RomanNumbers.valueOf( romanNumeral.substring( i, i + 1 ) ).getValue();
+            int nextLetter = RomanNumbers.valueOf( romanNumeral.substring( i + 1, i + 2 ) ).getValue();
+            numberWhenFirstLowerThanSecondAddOneToCounter( number, letter, nextLetter );
+            numberWhenFirstBiggerOrEqualsToSecond( romanNumeral, number, i, letter, nextLetter );
+        }
+    }
+
+    /**
+     * @param romanNumeral
+     * @param number
+     * @param i
+     */
+    private void lastNumber(String romanNumeral, NumberConverted number, int i) {
+        if (i == romanNumeral.length() - 1) {
+            number.numberConverted = addNextValueToRomanConversion( romanNumeral, number.numberConverted, i );
+        }
+    }
+
+    /**
+     * @param romanNumeral
+     * @param number
+     * @param i
+     * @param letter
+     * @param nextLetter
+     */
+    private void numberWhenFirstBiggerOrEqualsToSecond(String romanNumeral, NumberConverted number, int i, int letter,
+            int nextLetter) {
+        if (letter >= nextLetter) {
+            number.numberConverted = addNextValueToRomanConversion( romanNumeral, number.numberConverted, i );
+        }
+    }
+
+    /**
+     * @param number
+     * @param letter
+     * @param nextLetter
+     */
+    private void numberWhenFirstLowerThanSecondAddOneToCounter(NumberConverted number, int letter, int nextLetter) {
+        if (letter < nextLetter) {
+            number.numberConverted = number.numberConverted + nextLetter - letter;
+            number.skipNextValue = true;
+        }
+    }
+    
+    private class NumberConverted implements Serializable{
+
+        /**
+         * serial version UID
+         */
+        private static final long serialVersionUID = -2648620583727417964L;
+        
+        protected int  numberConverted;
+        protected boolean skipNextValue;
+        
+    }
+
+    /**
+     * @param romanNumeral
+     * @param numberConverted
+     * @param positionOfTheNextElement
+     * @return
+     */
+    private int addNextValueToRomanConversion(String romanNumeral, int numberConverted, int positionOfTheNextElement) {
+        numberConverted = numberConverted
+                + RomanNumbers.valueOf( romanNumeral.substring( positionOfTheNextElement, positionOfTheNextElement + 1 ) ).getValue();
         return numberConverted;
     }
     
