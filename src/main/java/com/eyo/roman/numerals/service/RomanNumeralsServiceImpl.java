@@ -8,10 +8,12 @@ public class RomanNumeralsServiceImpl implements RomanNumeralsService {
     
     @Override
     public String convertDecimalNumberToRomanNumeral(int naturalNumber) {
-        if (naturalNumber > 9){
-            return getRomanNumeralFromSimpleNumberMinusThanTen( "C", "L", "X", naturalNumber / 10 );
+        StringBuilder romanNumeral = new StringBuilder();
+        if (naturalNumber > 9) {
+            romanNumeral.append( getRomanNumeralFromSimpleNumberMinusThanTen( "C", "L", "X", naturalNumber / 10 ) );
         }
-        return getRomanNumeralFromSimpleNumberMinusThanTen( "X", "V", "I", naturalNumber );
+        romanNumeral.append(getRomanNumeralFromSimpleNumberMinusThanTen( "X", "V", "I", naturalNumber % 10 ));
+        return romanNumeral.toString();
     }
     
     /**
@@ -41,7 +43,7 @@ public class RomanNumeralsServiceImpl implements RomanNumeralsService {
         output = nineSpecialCase( ten, one, numberMinusThanTen, output );
         return output;
     }
-
+    
     /**
      * @param one
      * @param numberMinusThanTen
@@ -55,7 +57,7 @@ public class RomanNumeralsServiceImpl implements RomanNumeralsService {
         }
         return romanNumber;
     }
-
+    
     /**
      * @param five
      * @param one
@@ -70,7 +72,7 @@ public class RomanNumeralsServiceImpl implements RomanNumeralsService {
         }
         return romanNumber;
     }
-
+    
     /**
      * @param five
      * @param one
@@ -85,7 +87,7 @@ public class RomanNumeralsServiceImpl implements RomanNumeralsService {
         }
         return romanNumber;
     }
-
+    
     /**
      * @param five
      * @param numberMinusThanTen
@@ -99,7 +101,7 @@ public class RomanNumeralsServiceImpl implements RomanNumeralsService {
         }
         return romanNumber;
     }
-
+    
     /**
      * @param ten
      * @param one
