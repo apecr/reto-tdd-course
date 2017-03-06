@@ -347,4 +347,68 @@ public class RomanNumeralsServiceTest {
         //Then
         assertEquals( 1, number );
     }
+    
+    @Test
+    public void whenRomanIINumber2(){
+        //When
+        int number = this.romanNumeralsService.convertRomanNumeralToDecimalNumber( "II" );
+        //Then
+        assertEquals( 2, number );
+    }
+    
+    @Test
+    public void whenRomanIIINumber3(){
+        //When
+        int number = this.romanNumeralsService.convertRomanNumeralToDecimalNumber( "III" );
+        //Then
+        assertEquals( 3, number );
+    }
+    
+    @Test
+    public void whenRomanIVNumber4(){
+        //When
+        int number = this.romanNumeralsService.convertRomanNumeralToDecimalNumber( "IV" );
+        //Then
+        assertEquals( 4, number );
+    }
+    
+    @Test
+    public void whenRomanVNumber5(){
+        //When
+        int number = this.romanNumeralsService.convertRomanNumeralToDecimalNumber( "V" );
+        //Then
+        assertEquals( 5, number );
+    }
+    
+    @Test
+    public void whenRomanVINumber6(){
+        //When
+        int number = this.romanNumeralsService.convertRomanNumeralToDecimalNumber( "VI" );
+        //Then
+        assertEquals( 6, number );
+    }
+    
+    @Test
+    public void whenRomanVIINumber7(){
+        //When
+        int number = this.romanNumeralsService.convertRomanNumeralToDecimalNumber( "VII" );
+        //Then
+        assertEquals( 7, number );
+    }
+    
+    @Test
+    public void whenRomanINumber8(){
+        //When
+        int number = this.romanNumeralsService.convertRomanNumeralToDecimalNumber( "VIII" );
+        //Then
+        assertEquals( 8, number );
+    }
+    
+    @Test
+    public void whenRomanIXNumber9(){
+        //When
+        int number = this.romanNumeralsService.convertRomanNumeralToDecimalNumber( "IX" );
+        //Then
+        assertEquals( 9, number );
+    }
 }
