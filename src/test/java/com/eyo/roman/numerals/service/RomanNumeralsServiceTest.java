@@ -31,4 +31,12 @@ public class RomanNumeralsServiceTest {
         //Then
         assertEquals( "I", romanNumeral );
     }
+    
+    @Test
+    public void whenNumber2ReturnII(){
+        //When
+        String romanNumeral = this.romanNumeralsService.convertDecimalNumberToRomanNumeral( 2 );
+        //Then
+        assertEquals( "II", romanNumeral );
+    }
 }
