@@ -149,8 +149,22 @@ public class RomanNumeralsServiceImpl implements RomanNumeralsService {
     public int convertRomanNumeralToDecimalNumber(String romanNumeral) {
         int numberConverted = 0;
         if (romanNumeral != null && romanNumeral.length() > 0) {
-            for (int i = 0; i < romanNumeral.length(); i++){
-                numberConverted = numberConverted + RomanNumbers.valueOf( romanNumeral.substring( i, i+1 ) ).getValue();
+            for (int i = 0; i < romanNumeral.length(); i++) {
+                if (i < romanNumeral.length() - 1) {
+                    int letter = RomanNumbers.valueOf( romanNumeral.substring( i, i + 1 ) ).getValue();
+                    int nextLetter = RomanNumbers.valueOf( romanNumeral.substring( i + 1, i + 2 ) ).getValue();
+                    if (letter < nextLetter) {
+                        numberConverted = numberConverted
+                                + nextLetter - letter;
+                        i++;
+                    } else {
+                        numberConverted = numberConverted
+                                + RomanNumbers.valueOf( romanNumeral.substring( i, i + 1 ) ).getValue();
+                    }
+                } else {
+                    numberConverted = numberConverted
+                            + RomanNumbers.valueOf( romanNumeral.substring( i, i + 1 ) ).getValue();
+                }
             }
         }
         return numberConverted;
