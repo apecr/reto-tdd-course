@@ -1,21 +1,35 @@
 package com.eyo.roman.numerals.service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.stereotype.Component;
+
+import com.eyo.roman.numerals.vo.RangeOfRomanNumeralsVO;
 
 @Component
 public class RomanNumeralsServiceImpl implements RomanNumeralsService {
     
+    private static final Map<Integer, RangeOfRomanNumeralsVO> MAP_RANGES = new HashMap<Integer, RangeOfRomanNumeralsVO>();
+    
+    static {
+        MAP_RANGES.put( 1, new RangeOfRomanNumeralsVO( "X", "V", "I" ) );
+        MAP_RANGES.put( 2, new RangeOfRomanNumeralsVO( "C", "L", "X" ) );
+        MAP_RANGES.put( 3, new RangeOfRomanNumeralsVO( "M", "D", "C" ) );
+    }
     
     @Override
     public String convertDecimalNumberToRomanNumeral(int naturalNumber) {
         StringBuilder romanNumeral = new StringBuilder();
-        if (naturalNumber > 99){
-            romanNumeral.append( getRomanNumeralFromSimpleNumberMinusThanTen( "M", "D", "C", naturalNumber / 100 ) );
+        if (naturalNumber > 99) {
+            romanNumeral.append( getRomanNumeralFromSimpleNumberMinusThanTen( MAP_RANGES.get( 3 ), naturalNumber / 100 ) );
         }
         if (naturalNumber > 9) {
-            romanNumeral.append( getRomanNumeralFromSimpleNumberMinusThanTen( "C", "L", "X", (naturalNumber % 100) / 10 ) );
+            romanNumeral.append(
+                    getRomanNumeralFromSimpleNumberMinusThanTen( MAP_RANGES.get( 2 ), ( naturalNumber % 100 ) / 10 ) );
         }
-        romanNumeral.append(getRomanNumeralFromSimpleNumberMinusThanTen( "X", "V", "I", ((naturalNumber % 100) % 10 ) / 1));
+        romanNumeral.append(
+                getRomanNumeralFromSimpleNumberMinusThanTen( MAP_RANGES.get( 1 ), ( ( naturalNumber % 100 ) % 10 ) / 1 ) );
         return romanNumeral.toString();
     }
     
@@ -37,13 +51,16 @@ public class RomanNumeralsServiceImpl implements RomanNumeralsService {
      *        El valor multiplicador de la potencia de 10 (si es 9 --> 9, si es 90 --> 0, si es 900 --> 9)
      * @return {@link String} Con el valor en numeros romanos del numberMinusThanTen
      */
-    private String getRomanNumeralFromSimpleNumberMinusThanTen(String ten, String five, String one,
+    private String getRomanNumeralFromSimpleNumberMinusThanTen(RangeOfRomanNumeralsVO rangeOfRomanNumerals,
             int numberMinusThanTen) {
-        String output = betweenOneAndThreeInclusives( one, numberMinusThanTen, null );
-        output = fourSpecialCase( five, one, numberMinusThanTen, output );
-        output = fiveSpecialCase( five, numberMinusThanTen, output );
-        output = betweenSixAndEigthInclusives( five, one, numberMinusThanTen, output );
-        output = nineSpecialCase( ten, one, numberMinusThanTen, output );
+        String output = betweenOneAndThreeInclusives( rangeOfRomanNumerals.getOne(), numberMinusThanTen, null );
+        output = fourSpecialCase( rangeOfRomanNumerals.getFive(), rangeOfRomanNumerals.getOne(), numberMinusThanTen,
+                output );
+        output = fiveSpecialCase( rangeOfRomanNumerals.getFive(), numberMinusThanTen, output );
+        output = betweenSixAndEigthInclusives( rangeOfRomanNumerals.getFive(), rangeOfRomanNumerals.getOne(),
+                numberMinusThanTen, output );
+        output = nineSpecialCase( rangeOfRomanNumerals.getTen(), rangeOfRomanNumerals.getOne(), numberMinusThanTen,
+                output );
         return output;
     }
     
