@@ -216,4 +216,15 @@ public class RomanNumeralsServiceTest {
         assertEquals( "XCIX", romanNumeral );
     }
     
+    /**
+     * Del 100 al 1000
+     */
+    
+    @Test
+    public void whenNumber100ReturnC(){
+        //When
+        String romanNumeral = this.romanNumeralsService.convertDecimalNumberToRomanNumeral( 100 );
+        //Then
+        assertEquals( "C", romanNumeral );
+    }
 }
