@@ -24,6 +24,10 @@ public class RomanNumeralsServiceTest {
         assertNotNull(this.romanNumeralsService);
     }
     
+    /**
+     * Del 0 al 9
+     */
+    
     @Test
     public void whenNumber0ReturnEmpty(){
         //When
@@ -103,6 +107,10 @@ public class RomanNumeralsServiceTest {
         //Then
         assertEquals( "IX", romanNumeral );
     }
+    
+    /**
+     * Del 10 al 100
+     */
     
     @Test
     public void whenNumber10ReturnX(){
@@ -198,6 +206,14 @@ public class RomanNumeralsServiceTest {
         String romanNumeral = this.romanNumeralsService.convertDecimalNumberToRomanNumeral( 62 );
         //Then
         assertEquals( "LXII", romanNumeral );
+    }
+    
+    @Test
+    public void whenNumber99ReturnXCIX(){
+        //When
+        String romanNumeral = this.romanNumeralsService.convertDecimalNumberToRomanNumeral( 99 );
+        //Then
+        assertEquals( "XCIX", romanNumeral );
     }
     
 }
