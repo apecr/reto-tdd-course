@@ -8,6 +8,9 @@ public class RomanNumeralsServiceImpl implements RomanNumeralsService {
     
     @Override
     public String convertDecimalNumberToRomanNumeral(int naturalNumber) {
+        if (naturalNumber > 9){
+            return getRomanNumeralFromSimpleNumberMinusThanTen( "C", "L", "X", naturalNumber / 10 );
+        }
         return getRomanNumeralFromSimpleNumberMinusThanTen( "X", "V", "I", naturalNumber );
     }
     
