@@ -337,6 +337,14 @@ public class RomanNumeralsServiceTest {
      */
     
     @Test
+    public void whenRomanNullNumber0(){
+        //When
+        int number = this.romanNumeralsService.convertRomanNumeralToDecimalNumber( null );
+        //Then
+        assertEquals( 0, number );
+    }
+    
+    @Test
     public void whenRomanEmptyNumber0(){
         //When
         int number = this.romanNumeralsService.convertRomanNumeralToDecimalNumber( "" );
