@@ -332,6 +332,10 @@ public class RomanNumeralsServiceTest {
      * 
      */
     
+    /**
+     * 0 a 9
+     */
+    
     @Test
     public void whenRomanEmptyNumber0(){
         //When
@@ -411,4 +415,146 @@ public class RomanNumeralsServiceTest {
         //Then
         assertEquals( 9, number );
     }
+    
+    /**
+     * 10 a 100
+     */
+    
+    
+    @Test
+    public void whenRomanXNumber10(){
+        //When
+        int number = this.romanNumeralsService.convertRomanNumeralToDecimalNumber( "X" );
+        //Then
+        assertEquals( 10, number );
+    }
+    
+    @Test
+    public void whenRomanXINumber11(){
+        //When
+        int number = this.romanNumeralsService.convertRomanNumeralToDecimalNumber( "XI" );
+        //Then
+        assertEquals( 11, number );
+    }
+    
+    @Test
+    public void whenRomanXIIINumber13(){
+        //When
+        int number = this.romanNumeralsService.convertRomanNumeralToDecimalNumber( "XIII" );
+        //Then
+        assertEquals( 13, number );
+    }
+    
+    @Test
+    public void whenRomanXIVNumber14(){
+        //When
+        int number = this.romanNumeralsService.convertRomanNumeralToDecimalNumber( "XIV" );
+        //Then
+        assertEquals( 14, number );
+    }
+    
+    @Test
+    public void whenRomanXVNumber15(){
+        //When
+        int number = this.romanNumeralsService.convertRomanNumeralToDecimalNumber( "XV" );
+        //Then
+        assertEquals( 15, number );
+    }
+    
+    @Test
+    public void whenRomanXVIINumber17(){
+        //When
+        int number = this.romanNumeralsService.convertRomanNumeralToDecimalNumber( "XVII" );
+        //Then
+        assertEquals( 17, number );
+    }
+    
+    @Test
+    public void whenRomanXVIIINumber18(){
+        //When
+        int number = this.romanNumeralsService.convertRomanNumeralToDecimalNumber( "XVIII" );
+        //Then
+        assertEquals( 18, number );
+    }
+    
+    @Test
+    public void whenRomanXIXNumber19(){
+        //When
+        int number = this.romanNumeralsService.convertRomanNumeralToDecimalNumber( "XIX" );
+        //Then
+        assertEquals( 19, number );
+    }
+    
+    @Test
+    public void whenRomanXXINumber21(){
+        //When
+        int number = this.romanNumeralsService.convertRomanNumeralToDecimalNumber( "XXI" );
+        //Then
+        assertEquals( 21, number );
+    }
+    
+    @Test
+    public void whenRomanXXXIINumber32(){
+        //When
+        int number = this.romanNumeralsService.convertRomanNumeralToDecimalNumber( "XXXII" );
+        //Then
+        assertEquals( 32, number );
+    }
+    
+    @Test
+    public void whenRomanXLIIINumber43(){
+        //When
+        int number = this.romanNumeralsService.convertRomanNumeralToDecimalNumber( "XLIII" );
+        //Then
+        assertEquals( 43, number );
+    }
+    
+    @Test
+    public void whenRomanLIVNumber54(){
+        //When
+        int number = this.romanNumeralsService.convertRomanNumeralToDecimalNumber( "LIV" );
+        //Then
+        assertEquals( 54, number );
+    }
+    
+    @Test
+    public void whenRomanLXVNumber65(){
+        //When
+        int number = this.romanNumeralsService.convertRomanNumeralToDecimalNumber( "LXV" );
+        //Then
+        assertEquals( 65, number );
+    }
+    
+    @Test
+    public void whenRomanLXXVINumber76(){
+        //When
+        int number = this.romanNumeralsService.convertRomanNumeralToDecimalNumber( "LXXVI" );
+        //Then
+        assertEquals( 76, number );
+    }
+    
+    @Test
+    public void whenRomanLXXXVIINumber87(){
+        //When
+        int number = this.romanNumeralsService.convertRomanNumeralToDecimalNumber( "LXXXVII" );
+        //Then
+        assertEquals( 87, number );
+    }
+    
+    @Test
+    public void whenRomanXCVIIINumber19(){
+        //When
+        int number = this.romanNumeralsService.convertRomanNumeralToDecimalNumber( "XCVIII" );
+        //Then
+        assertEquals( 98, number );
+    }
+    
+    @Test
+    public void whenRomanXCIXNumber99(){
+        //When
+        int number = this.romanNumeralsService.convertRomanNumeralToDecimalNumber( "XCIX" );
+        //Then
+        assertEquals( 99, number );
+    }
+    
 }
