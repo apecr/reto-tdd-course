@@ -1,5 +1,6 @@
 package com.eyo.roman.numerals.service;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
@@ -21,5 +22,13 @@ public class RomanNumeralsServiceTest {
     @Test
     public void notNull(){
         assertNotNull(this.romanNumeralsService);
+    }
+    
+    @Test
+    public void whenNumber1ReturnI(){
+        //When
+        String romanNumeral = this.romanNumeralsService.convertDecimalNumberToRomanNumeral( 1 );
+        //Then
+        assertEquals( "I", romanNumeral );
     }
 }
