@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.stereotype.Component;
 
 import com.eyo.roman.numerals.vo.RangeOfRomanNumeralsVO;
+import com.eyo.roman.numerals.vo.RomanNumbers;
 
 @Component
 public class RomanNumeralsServiceImpl implements RomanNumeralsService {
@@ -13,9 +14,9 @@ public class RomanNumeralsServiceImpl implements RomanNumeralsService {
     private static final Map<Integer, RangeOfRomanNumeralsVO> MAP_RANGES = new HashMap<>();
     
     static {
-        MAP_RANGES.put( 1, new RangeOfRomanNumeralsVO( "X", "V", "I" ) );
-        MAP_RANGES.put( 2, new RangeOfRomanNumeralsVO( "C", "L", "X" ) );
-        MAP_RANGES.put( 3, new RangeOfRomanNumeralsVO( "M", "D", "C" ) );
+        MAP_RANGES.put( 1, new RangeOfRomanNumeralsVO( RomanNumbers.X, RomanNumbers.V, RomanNumbers.I ) );
+        MAP_RANGES.put( 2, new RangeOfRomanNumeralsVO( RomanNumbers.C, RomanNumbers.L, RomanNumbers.X ) );
+        MAP_RANGES.put( 3, new RangeOfRomanNumeralsVO( RomanNumbers.M, RomanNumbers.D, RomanNumbers.C ) );
     }
     
     @Override
@@ -62,10 +63,10 @@ public class RomanNumeralsServiceImpl implements RomanNumeralsService {
      * @param output
      * @return
      */
-    private String betweenOneAndThreeInclusives(String one, int numberMinusThanTen, String output) {
+    private String betweenOneAndThreeInclusives(RomanNumbers one, int numberMinusThanTen, String output) {
         String romanNumber = output;
         if (numberMinusThanTen < 4) {
-            romanNumber = repeatString( one, numberMinusThanTen );
+            romanNumber = repeatString( one.name(), numberMinusThanTen );
         }
         return romanNumber;
     }
@@ -77,10 +78,10 @@ public class RomanNumeralsServiceImpl implements RomanNumeralsService {
      * @param output
      * @return
      */
-    private String betweenSixAndEigthInclusives(String five, String one, int numberMinusThanTen, String output) {
+    private String betweenSixAndEigthInclusives(RomanNumbers five, RomanNumbers one, int numberMinusThanTen, String output) {
         String romanNumber = output;
         if (numberMinusThanTen > 5) {
-            romanNumber = five + repeatString( one, numberMinusThanTen - 5 );
+            romanNumber = five.name() + repeatString( one.name(), numberMinusThanTen - 5 );
         }
         return romanNumber;
     }
@@ -92,10 +93,10 @@ public class RomanNumeralsServiceImpl implements RomanNumeralsService {
      * @param output
      * @return
      */
-    private String fourSpecialCase(String five, String one, int numberMinusThanTen, String output) {
+    private String fourSpecialCase(RomanNumbers five, RomanNumbers one, int numberMinusThanTen, String output) {
         String romanNumber = output;
         if (numberMinusThanTen == 4) {
-            romanNumber = one + five;
+            romanNumber = one.name() + five.name();
         }
         return romanNumber;
     }
@@ -106,10 +107,10 @@ public class RomanNumeralsServiceImpl implements RomanNumeralsService {
      * @param output
      * @return
      */
-    private String fiveSpecialCase(String five, int numberMinusThanTen, String output) {
+    private String fiveSpecialCase(RomanNumbers five, int numberMinusThanTen, String output) {
         String romanNumber = output;
         if (numberMinusThanTen == 5) {
-            romanNumber = five;
+            romanNumber = five.name();
         }
         return romanNumber;
     }
@@ -121,10 +122,10 @@ public class RomanNumeralsServiceImpl implements RomanNumeralsService {
      * @param output
      * @return
      */
-    private String nineSpecialCase(String ten, String one, int numberMinusThanTen, String output) {
+    private String nineSpecialCase(RomanNumbers ten, RomanNumbers one, int numberMinusThanTen, String output) {
         String romanNumber = output;
         if (numberMinusThanTen == 9) {
-            romanNumber = one + ten;
+            romanNumber = one.name() + ten.name();
         }
         return romanNumber;
     }

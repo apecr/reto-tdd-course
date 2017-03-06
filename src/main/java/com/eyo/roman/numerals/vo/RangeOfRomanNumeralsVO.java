@@ -9,14 +9,14 @@ public class RangeOfRomanNumeralsVO implements Serializable{
      */
     private static final long serialVersionUID = 3554064724171308866L;
     
-    private String ten;
+    private RomanNumbers ten;
     
-    private String five;
+    private RomanNumbers five;
     
-    private String one;
+    private RomanNumbers one;
 
     
-    public RangeOfRomanNumeralsVO(String ten, String five, String one) {
+    public RangeOfRomanNumeralsVO(RomanNumbers ten, RomanNumbers five, RomanNumbers one) {
         super();
         this.setTen( ten );
         this.setFive( five );
@@ -27,7 +27,7 @@ public class RangeOfRomanNumeralsVO implements Serializable{
     /**
      * @return the ten
      */
-    public String getTen() {
+    public RomanNumbers getTen() {
         return ten;
     }
 
@@ -35,7 +35,7 @@ public class RangeOfRomanNumeralsVO implements Serializable{
     /**
      * @param ten the ten to set
      */
-    public void setTen(String ten) {
+    public void setTen(RomanNumbers ten) {
         this.ten = ten;
     }
 
@@ -43,7 +43,7 @@ public class RangeOfRomanNumeralsVO implements Serializable{
     /**
      * @return the five
      */
-    public String getFive() {
+    public RomanNumbers getFive() {
         return five;
     }
 
@@ -51,7 +51,7 @@ public class RangeOfRomanNumeralsVO implements Serializable{
     /**
      * @param five the five to set
      */
-    public void setFive(String five) {
+    public void setFive(RomanNumbers five) {
         this.five = five;
     }
 
@@ -59,7 +59,7 @@ public class RangeOfRomanNumeralsVO implements Serializable{
     /**
      * @return the one
      */
-    public String getOne() {
+    public RomanNumbers getOne() {
         return one;
     }
 
@@ -67,7 +67,7 @@ public class RangeOfRomanNumeralsVO implements Serializable{
     /**
      * @param one the one to set
      */
-    public void setOne(String one) {
+    public void setOne(RomanNumbers one) {
         this.one = one;
     }
     
