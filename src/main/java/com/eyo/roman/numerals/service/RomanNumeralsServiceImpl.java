@@ -22,14 +22,14 @@ public class RomanNumeralsServiceImpl implements RomanNumeralsService {
     public String convertDecimalNumberToRomanNumeral(int naturalNumber) {
         StringBuilder romanNumeral = new StringBuilder();
         if (naturalNumber > 99) {
-            romanNumeral.append( getRomanNumeralFromSimpleNumberMinusThanTen( MAP_RANGES.get( 3 ), naturalNumber / 100 ) );
+            romanNumeral.append( getRomanNumeralFromSimpleNumberMinusThanTen( MAP_RANGES.get( 3 ), (naturalNumber % 1000) / 100 ) );
         }
         if (naturalNumber > 9) {
             romanNumeral.append(
                     getRomanNumeralFromSimpleNumberMinusThanTen( MAP_RANGES.get( 2 ), ( naturalNumber % 100 ) / 10 ) );
         }
         romanNumeral.append(
-                getRomanNumeralFromSimpleNumberMinusThanTen( MAP_RANGES.get( 1 ), ( ( naturalNumber % 100 ) % 10 ) / 1 ) );
+                getRomanNumeralFromSimpleNumberMinusThanTen( MAP_RANGES.get( 1 ), ( naturalNumber % 10 ) / 1 ) );
         return romanNumeral.toString();
     }
     
