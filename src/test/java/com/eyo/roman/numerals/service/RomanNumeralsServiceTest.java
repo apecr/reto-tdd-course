@@ -25,6 +25,14 @@ public class RomanNumeralsServiceTest {
     }
     
     @Test
+    public void whenNumber0ReturnEmpty(){
+        //When
+        String romanNumeral = this.romanNumeralsService.convertDecimalNumberToRomanNumeral( 0 );
+        //Then
+        assertEquals( "", romanNumeral );
+    }
+    
+    @Test
     public void whenNumber1ReturnI(){
         //When
         String romanNumeral = this.romanNumeralsService.convertDecimalNumberToRomanNumeral( 1 );
