@@ -1,11 +1,11 @@
 package com.eyo.roman.numerals.service;
 
-import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.stereotype.Component;
 
+import com.eyo.roman.numerals.vo.NumberConverted;
 import com.eyo.roman.numerals.vo.RangeOfRomanNumeralsVO;
 import com.eyo.roman.numerals.vo.RomanNumbers;
 
@@ -154,7 +154,7 @@ public class RomanNumeralsServiceImpl implements RomanNumeralsService {
         }
         return numberConverted;
     }
-
+    
     /**
      * @param romanNumeral
      * @param numberConverted
@@ -162,29 +162,30 @@ public class RomanNumeralsServiceImpl implements RomanNumeralsService {
      */
     private int recorreNumerosRomanosYSumaCadaUno(String romanNumeral, int numberConverted) {
         NumberConverted number = new NumberConverted();
-        number.numberConverted = numberConverted;
-        number.skipNextValue = false;
+        number.setNumber( numberConverted );
+        number.setSkipNextValue( false );
         for (int i = 0; i < romanNumeral.length(); i++) {
-            allNumbersButLast( romanNumeral, number, i ); 
-            lastNumber( romanNumeral, number, i );
-            i = addCountIfFirstNumberLowerThanSecond( number, i );
+            executeOneIterationOfConversion( romanNumeral, number, i );
         }
-        return number.numberConverted;
+        return number.getNumber();
     }
 
     /**
+     * @param romanNumeral
      * @param number
      * @param i
-     * @return
      */
-    private int addCountIfFirstNumberLowerThanSecond(NumberConverted number, int i) {
-        if (number.skipNextValue){
-            i++;
-            number.skipNextValue = false;
+    private void executeOneIterationOfConversion(String romanNumeral, NumberConverted number, int i) {
+        if (!number.isSkipNextValue()) {
+            number.setSkipNextValue( false );
+            allNumbersButLast( romanNumeral, number, i );
+            lastNumber( romanNumeral, number, i );
+        } else{
+            number.setSkipNextValue( false );
         }
-        return i;
     }
-
+    
+    
     /**
      * @param romanNumeral
      * @param number
@@ -198,7 +199,7 @@ public class RomanNumeralsServiceImpl implements RomanNumeralsService {
             numberWhenFirstBiggerOrEqualsToSecond( romanNumeral, number, i, letter, nextLetter );
         }
     }
-
+    
     /**
      * @param romanNumeral
      * @param number
@@ -206,10 +207,10 @@ public class RomanNumeralsServiceImpl implements RomanNumeralsService {
      */
     private void lastNumber(String romanNumeral, NumberConverted number, int i) {
         if (i == romanNumeral.length() - 1) {
-            number.numberConverted = addNextValueToRomanConversion( romanNumeral, number.numberConverted, i );
+            number.setNumber( addNextValueToRomanConversion( romanNumeral, number.getNumber(), i ) );
         }
     }
-
+    
     /**
      * @param romanNumeral
      * @param number
@@ -220,10 +221,10 @@ public class RomanNumeralsServiceImpl implements RomanNumeralsService {
     private void numberWhenFirstBiggerOrEqualsToSecond(String romanNumeral, NumberConverted number, int i, int letter,
             int nextLetter) {
         if (letter >= nextLetter) {
-            number.numberConverted = addNextValueToRomanConversion( romanNumeral, number.numberConverted, i );
+            number.setNumber( addNextValueToRomanConversion( romanNumeral, number.getNumber(), i ) );
         }
     }
-
+    
     /**
      * @param number
      * @param letter
@@ -231,23 +232,11 @@ public class RomanNumeralsServiceImpl implements RomanNumeralsService {
      */
     private void numberWhenFirstLowerThanSecondAddOneToCounter(NumberConverted number, int letter, int nextLetter) {
         if (letter < nextLetter) {
-            number.numberConverted = number.numberConverted + nextLetter - letter;
-            number.skipNextValue = true;
+            number.setNumber( number.getNumber() + nextLetter - letter );
+            number.setSkipNextValue( true );
         }
     }
     
-    private class NumberConverted implements Serializable{
-
-        /**
-         * serial version UID
-         */
-        private static final long serialVersionUID = -2648620583727417964L;
-        
-        protected int  numberConverted;
-        protected boolean skipNextValue;
-        
-    }
-
     /**
      * @param romanNumeral
      * @param numberConverted
@@ -255,9 +244,9 @@ public class RomanNumeralsServiceImpl implements RomanNumeralsService {
      * @return
      */
     private int addNextValueToRomanConversion(String romanNumeral, int numberConverted, int positionOfTheNextElement) {
-        numberConverted = numberConverted
-                + RomanNumbers.valueOf( romanNumeral.substring( positionOfTheNextElement, positionOfTheNextElement + 1 ) ).getValue();
-        return numberConverted;
+        return numberConverted + RomanNumbers
+                .valueOf( romanNumeral.substring( positionOfTheNextElement, positionOfTheNextElement + 1 ) )
+                .getValue();
     }
     
 }
