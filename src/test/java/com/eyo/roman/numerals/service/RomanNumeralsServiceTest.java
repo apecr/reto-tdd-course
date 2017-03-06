@@ -327,7 +327,7 @@ public class RomanNumeralsServiceTest {
     /**
      * 
      * 
-     * convertDecimalNumberToRomanNumeral
+     * convertRomanNumeralToDecimalNumber
      * 
      * 
      */
