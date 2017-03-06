@@ -31,23 +31,85 @@ public class RomanNumeralsServiceImpl implements RomanNumeralsService {
      */
     private String getRomanNumeralFromSimpleNumberMinusThanTen(String ten, String five, String one,
             int numberMinusThanTen) {
-        String output = "";
-        if (numberMinusThanTen < 4) {
-            output = repeatString( one, numberMinusThanTen );
-        }
-        if (numberMinusThanTen == 4) {
-            output = one + five;
-        }
-        if (numberMinusThanTen == 5) {
-            output = five;
-        }
-        if (numberMinusThanTen > 5) {
-            output = five + repeatString( one, numberMinusThanTen - 5 );
-        }
-        if (numberMinusThanTen == 9) {
-            output = one + ten;
-        }
+        String output = betweenOneAndThreeInclusives( one, numberMinusThanTen, null );
+        output = fourSpecialCase( five, one, numberMinusThanTen, output );
+        output = fiveSpecialCase( five, numberMinusThanTen, output );
+        output = betweenSixAndEigthInclusives( five, one, numberMinusThanTen, output );
+        output = nineSpecialCase( ten, one, numberMinusThanTen, output );
         return output;
+    }
+
+    /**
+     * @param one
+     * @param numberMinusThanTen
+     * @param output
+     * @return
+     */
+    private String betweenOneAndThreeInclusives(String one, int numberMinusThanTen, String output) {
+        String romanNumber = output;
+        if (numberMinusThanTen < 4) {
+            romanNumber = repeatString( one, numberMinusThanTen );
+        }
+        return romanNumber;
+    }
+
+    /**
+     * @param five
+     * @param one
+     * @param numberMinusThanTen
+     * @param output
+     * @return
+     */
+    private String betweenSixAndEigthInclusives(String five, String one, int numberMinusThanTen, String output) {
+        String romanNumber = output;
+        if (numberMinusThanTen > 5) {
+            romanNumber = five + repeatString( one, numberMinusThanTen - 5 );
+        }
+        return romanNumber;
+    }
+
+    /**
+     * @param five
+     * @param one
+     * @param numberMinusThanTen
+     * @param output
+     * @return
+     */
+    private String fourSpecialCase(String five, String one, int numberMinusThanTen, String output) {
+        String romanNumber = output;
+        if (numberMinusThanTen == 4) {
+            romanNumber = one + five;
+        }
+        return romanNumber;
+    }
+
+    /**
+     * @param five
+     * @param numberMinusThanTen
+     * @param output
+     * @return
+     */
+    private String fiveSpecialCase(String five, int numberMinusThanTen, String output) {
+        String romanNumber = output;
+        if (numberMinusThanTen == 5) {
+            romanNumber = five;
+        }
+        return romanNumber;
+    }
+
+    /**
+     * @param ten
+     * @param one
+     * @param numberMinusThanTen
+     * @param output
+     * @return
+     */
+    private String nineSpecialCase(String ten, String one, int numberMinusThanTen, String output) {
+        String romanNumber = output;
+        if (numberMinusThanTen == 9) {
+            romanNumber = one + ten;
+        }
+        return romanNumber;
     }
     
     /**
